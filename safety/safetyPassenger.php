@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login-php</title>
-    <link rel="stylesheet" href="projectWorkshop/assets/css/style.css">
+    <title>Passenger Safety</title>
 </head>
 <body>
     <header>
@@ -14,31 +13,24 @@
     </header>
 
     <main>
-        <section>
-            <label>Go Together, Save Forever</label>
+        <section class="protect-container">
+            <label><h1>How we Protect You</h1></label>
+
+            <div class="first-point"></div>
+            <div class="second-point"></div>
+            <div class="third-point"></div>
         </section>
 
-        <section>
-            <div>
-                <a href="../index.php">
-                    <button>close</button>
-                </a>
-            </div>
-
-            <div>
-                <h2>CREATE YOUR ACCOUNT</h2>
-            </div>
-
-            <form class="login-form" action="process_signup.php" method="POST">
-                <input type="text" name="fullname" placeholder="Full Name">
-                <input type="text" name="id" placeholder="Matric / Staff ID">
-                <input type="email" name="email" placeholder="Email">
-                <input type="text" name="password" placeholder="Password">
-                <button type="submit" >Sign Up</button>
-
-                <label>Already have an account? <a href="login.php">Log in</a></label>
-            </form>
+        <section class="howToStaySafe-container">
+            <div class="before-carpool"></div>
+            <div class="during-carpool"></div>
+            <div class="aftter-carpool"></div>
         </section>
+
+        <section class="reportedIncident-container">
+            <div></div>
+        </section>
+
     </main>
 
      <footer>
