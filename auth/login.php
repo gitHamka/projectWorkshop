@@ -2,45 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login-php</title>
-    <link rel="stylesheet" href="projectWorkshop/assets/css/style.css">
+    <title>Login - GreenRide Campus</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
 </head>
 <body>
-    <header>
-        <div id="logo">
-            <a href="../index.php"><label>GREENRIDE CAMPUS</label></a>
-        </div>
-    </header>
-
-    <main>
-
-        <section>
-            <label>Go Together, Save Forever</label>
-        </section>
-
-        <section>
-            <div>
-                <a href="../index.php">
-                    <button>close</button>
-                </a>
-            </div>
-
-            <div>
-                <h2>LOGIN TO YOUR ACCOUNT</h2>
-            </div>
-
-            <form class="login-form" action="process_login.php" method="POST">
-
-                <input type="text" name="id" placeholder="Matric / Staff ID">
-                <input type="text" name="password" placeholder="Password">
-                <button type="submit" >Login</button>
-
-                <label>
-                    Don't have an account? <a href="signup.php">Sign Up</a>
-                </label>
-            </form>
-        </section>
-    </main>
+<div class="auth-container">
+    <h2>UTeM Carpooling Login</h2>
+    <form action="process_login.php" method="POST">
+        <div class="form-group"><label>Email Address</label><input type="email" name="email" required></div>
+        <div class="form-group"><label>Password</label><input type="password" name="password" required></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Sign In</button>
+    </form>
+    <p style="text-align:center; margin-top:15px;">New member? <a href="signup.php">Register workspace</a></p>
+</div>
 </body>
 </html>

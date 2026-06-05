@@ -1,0 +1,84 @@
+/* Main Layout Split Screen Setup */
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 35px;
+    align-items: start;
+}
+
+/* Left Sidebar Action Blocks from All Pic.pdf */
+.sidebar {
+    background: #FFFFFF;
+    padding: 25px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(46,125,50,0.08);
+}
+
+.sidebar .sidebar-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    margin-bottom: 12px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.sidebar .btn-req { background-color: #CCFF90; color: #1B5E20; }
+.sidebar .btn-edit { background-color: #FFF59D; color: #F57F17; }
+.sidebar .btn-cancel { background-color: #FFCDD2; color: #B71C1C; }
+.sidebar .btn-prof { background-color: #E0F7FA; color: #006064; }
+
+.sidebar .sidebar-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Perspective Segment Controls */
+.role-toggle-bar {
+    display: flex;
+    border-radius: 30px;
+    background-color: #EEEEEE;
+    padding: 6px;
+    margin-bottom: 25px;
+}
+
+.role-toggle-btn {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 25px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: all 0.2s;
+}
+
+.role-toggle-btn.active-passenger {
+    background-color: #7CB342;
+    color: white;
+}
+
+.role-toggle-btn.active-driver {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+/* Visual Map Container */
+.map-container {
+    width: 100%;
+    height: 320px;
+    background-color: #E8F5E9;
+    border: 4px solid #FFFFFF;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+}

@@ -1,74 +1,33 @@
+<?php
+session_start();
+if (isset($_SESSION['user_id'])) {
+    header("Location: dashboard/dashboard.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GreenRide Campus - UTeM Carpooling Hub</title> [cite: 132]
     <link rel="stylesheet" href="assets/css/style.css">
-    
 </head>
 <body>
-    <header>
-        <div id="logo">
-            <h1>GREERIDE CAMPUS</h1>
-        </div>
-
-        <div id="login">
-            <a href="auth/login.php">
-                <button>Login</button>
-            </a>
-        </div>
-
-        <div id="sign-up">
-            <a href="auth/signup.php">
-                <button>Sign Up</button>
-            </a>
-        </div>
-    </header>
-
-    <main>
-        <div id="btn-sos">
-            <a href="safety/sos.php">
-                <button>SOS</button>
-            </a>
-        </div>
-
-        <div>
-            <h1>Go together, Save forever</h1>
-            <a href="auth/login.php">
-                <button>GET STARTED</button>
-            </a>
-        </div>
-    </main>
-
-    <footer>
-        <table border="1">
-            <tr>
-                <td>GREENRIDE CAMPUS</td>
-                <td>Company</td>
-                <td>Explore</td>
-                <td>Safety</td>
-                <td>Support</td>
-            </tr>
-
-            <tr>
-                <td>UTeM Carpooling Hub</td>
-                <td><a href="company/about_us.php">About Us</a></td>
-                <td><a href="trip/explore_trips.php">Find a Ride</a></td>
-                <td><a href="safety/safetyPassenger.php">For Passengers</a></td>
-                <td><a href="company/contact_us.php">Contact Us</a></td>
-            </tr>
-
-            <tr>
-                <td>Fakulti Teknologi Maklumat dan Komunikasi</td>
-                <td></td>
-                <td>Post a Ride</td>
-                <td><a href="safety/safetyDriver.php">For Drivers</a></td>
-                <td><a href="safety/gender_preference_guide.php">Gender Preference Guide</a></td>
-            </tr>
-        </table>
-        <hr>
-        <p><small>&copy;2026 GREENRIDE CAMPUS - the OGs</small></p>
-    </footer>
+<header>
+    <div style="font-size:24px; font-weight:bold;">GREENRIDE CAMPUS</div>
+    <div>
+        <a href="auth/login.php" class="btn btn-primary">Login</a>
+        <a href="auth/signup.php" class="btn" style="background:#fff; color:#2e7d32;">Sign Up</a>
+    </div>
+</header>
+<div class="container" style="text-align:center; padding-top:60px;">
+    <h1>Ride Together. Save Forever.</h1>
+    <p style="font-size:18px; max-width:700px; margin:20px auto; line-height:1.6;">
+        [cite_start]Welcome to the official UTeM student carpooling platform[cite: 1, 14]. [cite_start]Connect safely with fellow campus commuters to reduce traffic emissions, bypass congestion, and split travel overheads cleanly[cite: 1, 15, 16].
+    </p>
+    <br>
+    <a href="auth/signup.php" class="btn btn-primary" style="font-size:20px; padding:15px 40px;">Get Started Now</a>
+</div>
+[cite_start]<footer>@2026 GREENRIDE CAMPUS - the OGs [cite: 6, 84]</footer>
 </body>
 </html>

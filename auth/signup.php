@@ -2,73 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login-php</title>
-    <link rel="stylesheet" href="projectWorkshop/assets/css/style.css">
+    <title>Sign Up - GreenRide Campus</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
 </head>
 <body>
-    <header>
-        <div id="logo">
-            <a href="../index.php"><label>GREENRIDE CAMPUS</label></a>
+<div class="auth-container">
+    <h2>Create Student Account</h2>
+    <form action="process_signup.php" method="POST">
+        <div class="form-group"><label>Full Name</label><input type="text" name="name" required></div>
+        <div class="form-group"><label>UTeM Student/Staff Email</label><input type="email" name="email" required></div>
+        <div class="form-group"><label>Password</label><input type="password" name="password" required></div>
+        <div class="form-group"><label>Matric / Staff ID</label><input type="text" name="matric_id" required></div>
+        <div class="form-group">
+            <label>Gender</label>
+            <select name="gender" required><option value="Male">Male</option><option value="Female">Female</option></select>
         </div>
-    </header>
-
-    <main>
-        <section>
-            <label>Go Together, Save Forever</label>
-        </section>
-
-        <section>
-            <div>
-                <a href="../index.php">
-                    <button>close</button>
-                </a>
-            </div>
-
-            <div>
-                <h2>CREATE YOUR ACCOUNT</h2>
-            </div>
-
-            <form class="login-form" action="process_signup.php" method="POST">
-                <input type="text" name="fullname" placeholder="Full Name">
-                <input type="text" name="id" placeholder="Matric / Staff ID">
-                <input type="email" name="email" placeholder="Email">
-                <input type="text" name="password" placeholder="Password">
-                <button type="submit" >Sign Up</button>
-
-                <label>Already have an account? <a href="login.php">Log in</a></label>
-            </form>
-        </section>
-    </main>
-
-     <footer>
-        <table border="1">
-            <tr>
-                <td>GREENRIDE CAMPUS</td>
-                <td>Company</td>
-                <td>Explore</td>
-                <td>Safety</td>
-                <td>Support</td>
-            </tr>
-
-            <tr>
-                <td>UTeM Carpooling Hub</td>
-                <td><a href="company/about_us.php">About Us</a></td>
-                <td><a href="trip/explore_trips.php">Find a Ride</a></td>
-                <td><a href="safety/safetyPassenger.php">For Passengers</a></td>
-                <td><a href="company/contact_us.php">Contact Us</a></td>
-            </tr>
-
-            <tr>
-                <td>Fakulti Teknologi Maklumat dan Komunikasi</td>
-                <td></td>
-                <td>Post a Ride</td>
-                <td><a href="safety/safetyDriver.php">For Drivers</a></td>
-                <td><a href="safety/gender_preference_guide.php">Gender Preference Guide</a></td>
-            </tr>
-        </table>
-        <hr>
-        <p><small>&copy;2026 GREENRIDE CAMPUS - the OGs</small></p>
-    </footer>
+        <div class="form-group"><label>Phone Number</label><input type="text" name="phone" required></div>
+        <div class="form-group">
+            <label>Default Workspace Role</label>
+            <select name="role"><option value="Passenger">Passenger</option><option value="Driver">Driver</option></select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Register</button>
+    </form>
+    <p style="text-align:center; margin-top:15px;">Already have an account? <a href="login.php">Login here</a></p>
+</div>
 </body>
 </html>

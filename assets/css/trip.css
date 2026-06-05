@@ -1,0 +1,92 @@
+/* Card Container Configurations */
+.trip-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.trip-card {
+    background: #FFFFFF;
+    border: 2px solid #E8F5E9;
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.trip-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-green);
+}
+
+.trip-info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.trip-locations {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.trip-meta-row {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.trip-pref-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge-mixed { background-color: #E0F2F1; color: #004D40; }
+.badge-female { background-color: #FCE4EC; color: #880E4F; }
+.badge-male { background-color: #E1F5FE; color: #01579B; }
+
+.trip-price-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.trip-cost {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--primary-green);
+}
+
+/* Modular Edit Screen Selectable Form Controls */
+.option-selector-group {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.selector-item {
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    background: #FAFAFA;
+    transition: all 0.2s;
+}
+
+.selector-item.selected {
+    border-color: var(--accent-green);
+    background-color: var(--light-green);
+    color: var(--dark-green);
+}
