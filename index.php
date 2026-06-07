@@ -21,7 +21,7 @@ if (isset($_SESSION['user_id'])) {
     </div>
 </header>
 <div class="container" style="text-align:center; padding-top:60px;">
-    <h1>Ride Together. Save Forever.</h1>
+    <h1>Go Together. Save Forever.</h1>
     <p style="font-size:18px; max-width:700px; margin:20px auto; line-height:1.6;">
         [cite_start]Welcome to the official UTeM student carpooling platform[cite: 1, 14]. [cite_start]Connect safely with fellow campus commuters to reduce traffic emissions, bypass congestion, and split travel overheads cleanly[cite: 1, 15, 16].
     </p>
