@@ -79,7 +79,7 @@ $trips_result = $conn->query("
         </div>
         <div class="benefit-card">
             <h4>Green Campus</h4>
-            <p>Fewer cars mean lower CO₂ emissions for a greener UTeM.</p>
+            <p>Less cars, lower CO2 emissions, greener UTeM.</p>
         </div>
         <div class="benefit-card">
             <h4>No more waiting</h4>
@@ -154,7 +154,7 @@ $trips_result = $conn->query("
             <div class="safety-icon">👥</div>
             <div>
                 <h4>Gender Preference</h4>
-                <p>Choose to ride only with the same gender — Female only, Male only, or Mixed.</p>
+                <p>Users can choose to ride only with the same gender (Female only/Male only/Mixed)</p>
             </div>
         </div>
         <div class="safety-feature-card">
