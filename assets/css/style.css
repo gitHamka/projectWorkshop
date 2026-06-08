@@ -178,38 +178,39 @@ header nav .btn-outline:hover {
 
 footer {
     background-color: var(--navbar-green);
-    color: #fff;
-    padding: 36px 60px 20px;
+    color: #000000;
+    padding: 24px 40px 14px;
     margin-top: auto;
+    border-radius: 20px 20px 0 0;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: 2fr repeat(3, 1fr);
+    grid-template-columns: 2fr repeat(4, 1fr);
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
-    padding-bottom: 24px;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0,1);
 }
 
 .footer-brand h3 {
-    color: #fff;
-    margin-bottom: 6px;
+    color: #000000;
+    margin-bottom: 4px;
     font-weight: 800;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .footer-brand p {
-    color: rgba(255,255,255,0.85);
-    font-size: 13px;
+    color: #000000;
+    font-size: 11px;
     line-height: 1.5;
 }
 
 .footer-column h4 {
-    color: #fff;
-    margin-bottom: 12px;
-    font-size: 14px;
+    color: #000000;
+    margin-bottom: 8px;
+    font-size: 12px;
     font-weight: 700;
 }
 
@@ -218,13 +219,13 @@ footer {
 }
 
 .footer-column ul li {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .footer-column ul li a {
-    color: rgba(255,255,255,0.85);
+    color: #000000;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 11px;
     transition: color 0.2s;
 }
 
@@ -234,9 +235,9 @@ footer {
 
 .footer-bottom {
     text-align: center;
-    padding-top: 16px;
-    font-size: 13px;
-    color: rgba(255,255,255,0.85);
+    padding-top: 10px;
+    font-size: 11px;
+    color: #000000;
     font-weight: 600;
     max-width: 1200px;
     margin: 0 auto;

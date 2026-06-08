@@ -1,3 +1,4 @@
+/* background */
 .auth-hero {
     position: relative;
     min-height: calc(100vh - 65px);
@@ -12,6 +13,8 @@
     overflow: hidden;
 }
 
+/* overlay background */
+
 .auth-hero::before {
     content: '';
     position: absolute;
@@ -20,6 +23,7 @@
     z-index: 0;
 }
 
+/* tagline */
 .auth-hero-text {
     position: absolute;
     left: 60px;
@@ -60,6 +64,8 @@
     cursor: pointer;
 }
 
+/* box untuk login ngan signup */
+
 .auth-wrapper {
     position: relative;
     z-index: 2;
@@ -98,6 +104,8 @@
     line-height: 1;
     font-weight: 300;
 }
+
+/* text input */
 
 .form-group {
     margin-bottom: 16px;
@@ -149,6 +157,9 @@
     accent-color: var(--accent-green);
 }
 
+
+/* login btn ngan submit btn */
+
 .btn-login {
     width: 100%;
     padding: 13px;
@@ -187,6 +198,7 @@
     background: #5aae3b;
 }
 
+/* dont have account text */
 .no-account {
     text-align: center;
     font-size: 13px;
@@ -207,6 +219,7 @@
     text-decoration: none;
 }
 
+/* signup button */
 .btn-signup-link {
     display: block;
     width: 100%;
@@ -225,4 +238,29 @@
 
 .btn-signup-link:hover {
     background: rgba(58,181,200,0.07);
+}
+
+.nav-login-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.nav-user-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.2);
+    font-size: 16px;
 }
