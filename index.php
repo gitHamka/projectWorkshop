@@ -31,8 +31,9 @@ $trips_result = $conn->query("
 <!-- ======== navbar ========= -->
 <header>
     <div class="logo-container">
-        🚗 GREENRIDE CAMPUS
-    </div>
+    <img src="assets/images/logo.png" alt="GreenRide Campus Logo">
+    GREENRIDE CAMPUS
+</div>
     <nav>
         <a href="auth/login.php" class="btn btn-outline">Login</a>
         <a href="auth/signup.php" class="btn btn-primary">Sign Up</a>
@@ -203,9 +204,9 @@ $trips_result = $conn->query("
                 <button class="faq-toggle">+</button>
             </div>
             <div class="faq-answer">
-                Yes, GreenRide Campus is safe. All users are verified using UTeM Matric or Staff ID,
-                so only the UTeM community can use the system. You can also choose gender preferences
-                and rate drivers or passengers after each trip to ensure accountability.
+                Yes, GreenRide Campus is safe. All users are verified using UTeM Matric or Staff ID, 
+                so only the UTeM community can use the system. You can also choose gender preferences and rate drivers 
+                or passengers after each trip to ensure accountability
             </div>
         </div>
 
@@ -215,8 +216,8 @@ $trips_result = $conn->query("
                 <button class="faq-toggle">+</button>
             </div>
             <div class="faq-answer">
-                Yes. Your personal data is stored securely and only used within the platform.
-                We do not share your phone number or personal details with other users directly.
+                Yes, your personal information is kept secure. We only share necessary ride details like pickup location and destination. 
+                Your contact information is only visible to confirmed ride partners, and all data is stored securely according to UTeM privacy guidelines.
             </div>
         </div>
 
@@ -226,8 +227,9 @@ $trips_result = $conn->query("
                 <button class="faq-toggle">+</button>
             </div>
             <div class="faq-answer">
-                After an incident is reported, we temporarily block the accounts involved.
-                We investigate, contact the authorities if needed, and offer support to all parties.
+                If an accident is reported, the system will record the incident along with all ride details. 
+                Users can review the ride history and ratings. 
+                The report will be reviewed, and appropriate action will be taken based on UTeM policies.
             </div>
         </div>
 
