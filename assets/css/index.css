@@ -1,7 +1,7 @@
 /* ------------- hero ------------------*/
 .hero-section {
     position: relative;
-    min-height: 480px;
+    min-height: 500px;
     background-color: #2a3a2a;
     background-image: url('../images/banner.png');
     background-size: cover;
@@ -25,7 +25,7 @@
 }
 
 .hero-content h1 {
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 28px;
@@ -40,7 +40,7 @@
     padding: 14px 30px;
     border-radius: 50px;
     font-weight: 800;
-    font-size: 13px;
+    font-size: 17px;
     letter-spacing: 1px;
     text-transform: uppercase;
     text-decoration: none;
@@ -54,12 +54,12 @@
 
 .btn-hero:hover { background: #5aae3b; }
 
-.btn-hero-sm { font-size: 12px; padding: 12px 24px; }
+.btn-hero-sm { font-size: 16px; padding: 12px 24px; }
 
 /* ------------- sec styles ------------------*/
 .section-title {
     text-align: center;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 900;
     color: var(--dark-green);
     margin-bottom: 8px;
@@ -68,7 +68,7 @@
 .section-subtitle {
     text-align: center;
     color: var(--text-muted);
-    font-size: 14px;
+    font-size: 18px;
     margin-bottom: 32px;
 }
 
@@ -105,20 +105,20 @@
 }
 
 .how-step-card h4 {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 800;
     color: var(--text-dark);
     margin-bottom: 8px;
 }
 
 .how-step-card p {
-    font-size: 12px;
+    font-size: 16px;
     color: var(--text-muted);
     line-height: 1.5;
 }
 
 .how-arrow {
-    font-size: 22px;
+    font-size: 26px;
     color: var(--text-muted);
     padding: 0 12px;
 }
@@ -138,7 +138,7 @@
 }
 
 .benefit-card h4 {
-    font-size: 15px;
+    font-size: 19px;
     font-weight: 800;
     color: var(--accent-green);
     margin-bottom: 6px;
@@ -146,7 +146,7 @@
 }
 
 .benefit-card p {
-    font-size: 13px;
+    font-size: 17px;
     color: var(--text-muted);
     line-height: 1.5;
     text-align: center;
@@ -186,13 +186,13 @@
 }
 
 .preview-trip-route {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 800;
     color: var(--text-dark);
 }
 
 .preview-trip-time {
-    font-size: 14px;
+    font-size: 18px;
     color: var(--text-muted);
     font-weight: 600;
 }
@@ -202,12 +202,12 @@
     color: var(--primary-green);
     padding: 5px 14px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
 }
 
 .preview-trip-cost {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 800;
     color: var(--primary-green);
     min-width: 70px;
@@ -218,7 +218,7 @@
 .trip-pref-badge {
     padding: 4px 12px;
     border-radius: 12px;
-    font-size: 11px;
+    font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -230,7 +230,7 @@
 .trips-empty {
     text-align: center;
     color: var(--text-muted);
-    font-size: 15px;
+    font-size: 19px;
     padding: 32px;
     background: #ffffff;
     border-radius: 16px;
@@ -264,19 +264,19 @@
 }
 
 .safety-icon {
-    font-size: 28px;
+    font-size: 32px;
     flex-shrink: 0;
 }
 
 .safety-feature-card h4 {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 800;
     color: var(--accent-green);
     margin-bottom: 4px;
 }
 
 .safety-feature-card p {
-    font-size: 12px;
+    font-size: 16px;
     color: var(--text-muted);
     line-height: 1.5;
 }
@@ -289,7 +289,7 @@
     border-radius: 12px;
     padding: 14px 20px;
     text-align: center;
-    font-size: 13px;
+    font-size: 17px;
     color: var(--danger-red);
     font-weight: 600;
     line-height: 1.6;
@@ -323,7 +323,7 @@
     align-items: center;
     padding: 18px 22px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--text-dark);
     gap: 16px;
@@ -336,7 +336,7 @@
     border-radius: 8px;
     width: 30px;
     height: 30px;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
     cursor: pointer;
     display: flex;
@@ -351,7 +351,7 @@
 .faq-answer {
     display: none;
     padding: 14px 22px 18px;
-    font-size: 13px;
+    font-size: 17px;
     color: var(--text-muted);
     line-height: 1.6;
     background: #fffef5;

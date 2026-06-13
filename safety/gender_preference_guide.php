@@ -13,7 +13,9 @@
         <p><strong>Male Only:</strong> Only male passengers can join this ride.</p>
         <p><strong>Mixed:</strong> All genders are welcome. This is the default option for users who are comfortable riding with anyone.</p>
         <h3>Why Gender Preference?</h3>
-        <p>We prioritize your safety and comfort. You can set your preference in your Profile settings or individual trip parameters. This feature helps ensure a secure ride experience across campus.</p>
+        <p>We prioritize your safety and comfort. You can set your preference in your Profile settings. 
+            This feature helps more comfortable and secure ride experience, especially for users who prefer traveling with the same gender. 
+            It also promotes trust and confidence when sharing rides with others.</p>
         <a href="../dashboard/dashboard.php" class="btn btn-primary">Return Home</a>
     </div>
 </div>
