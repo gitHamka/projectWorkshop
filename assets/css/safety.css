@@ -34,7 +34,7 @@
 }
 
 .safety-card h4.title-amber {
-    color: #e07b00;
+    color: var(--accent-green);
 }
 
 .safety-card p {

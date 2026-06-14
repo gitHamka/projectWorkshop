@@ -15,9 +15,9 @@ include '../includes/header.php';
 ?>
 
 <div class="container">
-    <a href="../dashboard/dashboard.php" class="btn-back">← BACK</a>
+    <a href="../index.php" class="btn-back">← BACK</a>
 
-    <!-- What every driver needs to know -->
+    <!--  driver needs to know -->
     <h2 class="safety-section-title">What every driver needs to know</h2>
     <div class="safety-card-grid">
         <div class="safety-card">
@@ -34,7 +34,7 @@ include '../includes/header.php';
         </div>
     </div>
 
-    <!-- How to stay safe -->
+    <!--  stay safe -->
     <h2 class="safety-section-title">How to stay safe</h2>
     <div class="safety-stage-tabs">
         <span class="safety-stage-tab">Before the carpool</span>
@@ -56,7 +56,7 @@ include '../includes/header.php';
         </div>
     </div>
 
-    <!-- If an incident is reported -->
+    <!--  incident reported -->
     <h2 class="safety-section-title">If an incident is reported</h2>
     <div class="incident-box">
         <p>After an incident is reported, we temporarily block the accounts involved.<br>
@@ -64,7 +64,7 @@ include '../includes/header.php';
     </div>
 
     <div style="text-align:center; margin-top:28px;">
-        <a href="../dashboard/dashboard.php" class="btn btn-primary">Back to Dashboard</a>
+        <a href="../index.php" class="btn btn-primary">Back to Dashboard</a>
     </div>
 </div>
 
