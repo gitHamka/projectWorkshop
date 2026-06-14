@@ -56,7 +56,7 @@ include '../includes/header.php';
         </div>
     </div>
 
-    <!-- If incident reported -->
+    <!-- If an incident is reported -->
     <h2 class="safety-section-title">If an incident is reported</h2>
     <div class="incident-box">
         <p>After an incident is reported, we temporarily block the accounts involved.<br>
