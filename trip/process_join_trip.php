@@ -1,50 +1,34 @@
 <?php
-session_start();
 require_once '../config/database.php';
-
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ../auth/login.php');
-    exit();
-}
+require_once '../config/session_check.php';
+check_login();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = $_SESSION['user_id'];
-    $trip_id = (int)$_POST['trip_id'];
-    $num_passengers = (int)$_POST['num_passengers'];
+    $trip_id = intval($_POST['trip_id']);
+    $pickup_point = $conn->real_escape_string($_POST['pickup_point']);
+    $dropoff_point = $conn->real_escape_string($_POST['dropoff_point']);
+    $seats_requested = intval($_POST['seats_requested']);
+    $passenger_note = $conn->real_escape_string($_POST['passenger_note']);
 
-    // Check if trip exists and has available seats
-    $check_query = "SELECT available_seats, current_passengers FROM trips WHERE id = ? AND driver_id != ?";
-    $check_stmt = $connection->prepare($check_query);
-    $check_stmt->bind_param('ii', $trip_id, $user_id);
-    $check_stmt->execute();
-    $check_result = $check_stmt->get_result();
+    $trip = $conn->query("SELECT * FROM trip WHERE trip_ID='$trip_id'")->fetch_assoc();
 
-    if ($check_result->num_rows > 0) {
-        $trip = $check_result->fetch_assoc();
-        $available = $trip['available_seats'] - $trip['current_passengers'];
-
-        if ($num_passengers <= $available) {
-            // Create booking
-            $booking_query = "INSERT INTO bookings (trip_id, passenger_id, num_passengers, status, created_at) VALUES (?, ?, ?, 'pending', NOW())";
-            $booking_stmt = $connection->prepare($booking_query);
-            $booking_stmt->bind_param('iii', $trip_id, $user_id, $num_passengers);
-            
-            if ($booking_stmt->execute()) {
-                header('Location: my_bookings.php?success=Request sent successfully');
-                exit();
-            } else {
-                $error = "Error creating booking: " . $connection->error;
-            }
-            $booking_stmt->close();
-        } else {
-            $error = "Not enough seats available";
-        }
-    } else {
-        $error = "Trip not found or unauthorized";
+    if (!$trip || $trip['status'] != 'Active' || $trip['seats_available'] < $seats_requested) {
+        header("Location: explore_trips.php?error=no_seats");
+        exit();
     }
-    $check_stmt->close();
-} else {
-    header('Location: explore_trips.php');
+
+    $sql = "INSERT INTO triprequest (trip_ID, user_ID, seats_requested, pickup_point, dropoff_point, status, request_time, passenger_note)
+            VALUES ('$trip_id', '$user_id', '$seats_requested', '$pickup_point', '$dropoff_point', 'Pending', NOW(), '$passenger_note')";
+
+    if ($conn->query($sql) === TRUE) {
+        header("Location: my_bookings.php?msg=requested");
+    } else {
+        header("Location: explore_trips.php?error=request_failed");
+    }
     exit();
 }
+
+header("Location: explore_trips.php");
+exit();
 ?>

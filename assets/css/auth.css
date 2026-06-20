@@ -3,7 +3,7 @@
     position: relative;
     min-height: calc(100vh - 65px);
     background-color: #2a3a2a;
-    background-image: url('../images/banner.png');
+    background-image: url('../images/auth.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -264,3 +264,22 @@
     background: rgba(255,255,255,0.2);
     font-size: 16px;
 }
+
+.field-error { 
+    color: #D32F2F; font-size: 12px; font-weight: 600; margin-top: 4px; display: none; }
+    .input-error { border-color: #D32F2F !important; background-color: #fff5f5 !important; }
+    .alert-box { border-radius: 10px; padding: 11px 16px; font-size: 13px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .alert-error { background: #FFEBEE; border: 1.5px solid #EF9A9A; color: #C62828; }
+    .password-strength { height: 4px; border-radius: 4px; margin-top: 6px; transition: all 0.3s; background: #E0E0E0; }
+    .strength-weak   { background: #EF5350; width: 33%; }
+    .strength-medium { background: #FFA726; width: 66%; }
+    .strength-strong { background: #66BB6A; width: 100%; }
+    .strength-label  { font-size: 11px; font-weight: 700; margin-top: 3px; 
+}
+
+.field-error { 
+    color: #D32F2F; font-size: 12px; font-weight: 600; margin-top: 4px; display: none; }
+    .input-error { border-color: #D32F2F !important; background-color: #fff5f5 !important; }
+    .alert-box { border-radius: 10px; padding: 11px 16px; font-size: 13px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .alert-error { background: #FFEBEE; border: 1.5px solid #EF9A9A; color: #C62828; }
+    .alert-success { background: #E8F5E9; border: 1.5px solid #A5D6A7; color: #1B5E20; }

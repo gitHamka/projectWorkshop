@@ -33,7 +33,7 @@ document.getElementById('sosTrigger').addEventListener('click', () => {
             document.getElementById('statusMessage').innerText = "SOS Dispatched! Coordinates sent securely. Campus security notified.";
         });
     }, () => {
-        // Fallback if location tracking block is active
+        // return if loc tracking block active
         fetch('../safety/send_sos.php', {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},

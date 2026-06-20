@@ -4,21 +4,30 @@ require_once '../config/session_check.php';
 check_login();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $driver_id = $_SESSION['user_id'];
-    $pickup = $conn->real_escape_string($_POST['pickup']);
-    $dropoff = $conn->real_escape_string($_POST['dropoff']);
-    $trip_date = $conn->real_escape_string($_POST['trip_date']);
-    $trip_time = $conn->real_escape_string($_POST['trip_time']);
-    $available_seats = intval($_POST['available_seats']);
+    $user_id  = $_SESSION['user_id'];
+    $vehicle_id     = intval($_POST['vehicle_id']);
+    $origin         = $conn->real_escape_string($_POST['origin']);
+    $destination    = $conn->real_escape_string($_POST['destination']);
+    $departure = $conn->real_escape_string(str_replace('T', ' ', $_POST['departure']) . ':00');    $seats_available = intval($_POST['seats_available']);
     $gender_preference = $conn->real_escape_string($_POST['gender_preference']);
-    $cost_share = floatval($_POST['cost_share']);
-    $notes = $conn->real_escape_string($_POST['notes']);
+    $price          = floatval($_POST['price']);
 
-    $sql = "INSERT INTO trips (driver_id, pickup, dropoff, trip_date, trip_time, available_seats, gender_preference, cost_share, notes) 
-            VALUES ('$driver_id', '$pickup', '$dropoff', '$trip_date', '$trip_time', '$available_seats', '$gender_preference', '$cost_share', '$notes')";
-    
+    $sql = "INSERT INTO trip (origin, destination, departure, seats_available, price, status, gender_preference, vehicle_ID, user_ID)
+            VALUES ('$origin', '$destination', '$departure', '$seats_available', '$price', 'Active', '$gender_preference', '$vehicle_id', '$user_id')";
+
     if ($conn->query($sql) === TRUE) {
         header("Location: ../dashboard/dashboard.php?msg=trip_posted");
+    } else {
+        header("Location: post_trip.php?error=1");
     }
-}
+    exit();
+
+    if ($conn->query($sql) === TRUE) {
+        header("Location: ../dashboard/dashboard.php?msg=trip_posted");
+    } else {
+        die("SQL Error: " . $conn->error); // temporary debug line
+        }
+        }
+header("Location: post_trip.php");
+exit();
 ?>

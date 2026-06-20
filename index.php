@@ -1,9 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['user_id'])) {
-    header("Location: dashboard/dashboard.php");
-    exit();
-}
+$is_logged_in = isset($_SESSION['user_id']);
+$user_name    = $_SESSION['user_name'] ?? '';
 
 require_once 'config/database.php';
 $trips_result = $conn->query("
@@ -35,8 +33,14 @@ $trips_result = $conn->query("
     GREENRIDE CAMPUS
 </div>
     <nav>
-        <a href="auth/login.php" class="btn btn-outline">Login</a>
-        <a href="auth/signup.php" class="btn btn-primary">Sign Up</a>
+        <?php if ($is_logged_in): ?>
+            <span style="color:#fff; font-weight:600; margin-right:12px;">Hi, <?php echo htmlspecialchars($user_name); ?>!</span>
+            <a href="dashboard/dashboard.php" class="btn btn-primary">Go to Dashboard</a>
+            <a href="auth/logout.php" class="btn btn-outline" style="margin-left:8px;">Logout</a>
+        <?php else: ?>
+            <a href="auth/login.php" class="btn btn-outline">Login</a>
+            <a href="auth/signup.php" class="btn btn-primary">Sign Up</a>
+        <?php endif; ?>
     </nav>
 </header>
 
@@ -47,7 +51,11 @@ $trips_result = $conn->query("
             <span class="hero-green">Go</span><span class="hero-white"> together,</span><br>
             <span class="hero-green">Save</span><span class="hero-white"> forever</span>
         </h1>
-        <a href="auth/signup.php" class="btn-hero">GET STARTED ➔</a>
+        <?php if ($is_logged_in): ?>
+            <a href="dashboard/dashboard.php" class="btn-hero">GO TO DASHBOARD ➔</a>
+        <?php else: ?>
+            <a href="auth/signup.php" class="btn-hero">GET STARTED ➔</a>
+        <?php endif; ?>
     </div>
 </section>
 
@@ -140,7 +148,11 @@ $trips_result = $conn->query("
     <?php endif; ?>
 
     <div class="section-cta">
-        <a href="auth/login.php" class="btn-hero">LOGIN TO JOIN ➔</a>
+        <?php if ($is_logged_in): ?>
+            <a href="trip/explore_trips.php" class="btn-hero">EXPLORE ALL RIDES ➔</a>
+        <?php else: ?>
+            <a href="auth/login.php" class="btn-hero">LOGIN TO JOIN ➔</a>
+        <?php endif; ?>
     </div>
 </section>
 
@@ -284,13 +296,13 @@ document.querySelectorAll('.faq-question').forEach(function(question) {
         var btn    = item.querySelector('.faq-toggle');
         var isOpen = item.classList.contains('active');
 
-        // Close all
+        // close all
         document.querySelectorAll('.faq-item').forEach(function(i) {
             i.classList.remove('active');
             i.querySelector('.faq-toggle').textContent = '+';
         });
 
-        // Open clicked if it was closed
+        // open if semua close
         if (!isOpen) {
             item.classList.add('active');
             btn.textContent = '×';

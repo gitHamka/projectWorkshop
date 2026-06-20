@@ -1,62 +1,69 @@
 <?php
-require_once dirname(__DIR__) . '/config/database.php';
-require_once dirname(__DIR__) . '/config/session_check.php';
+require_once '../config/database.php';
+require_once '../config/session_check.php';
 check_login();
 
-global $conn;
 $user_id = $_SESSION['user_id'];
+
+$requests = $conn->query("
+    SELECT tr.*, t.origin, t.destination, t.departure, t.price, u.name AS driver_name
+    FROM triprequest tr
+    JOIN trip t ON tr.trip_ID = t.trip_ID
+    JOIN user u ON t.user_ID = u.user_ID
+    WHERE tr.user_ID='$user_id'
+    ORDER BY tr.request_time DESC
+");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Confirmed Bookings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - GreenRide Campus</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/trip.css">
 </head>
 <body>
-<header>
-    <div class="logo-container">GREENRIDE CAMPUS HUB</div>
-    <nav><a href="../dashboard/dashboard.php">Dashboard</a><a href="../auth/logout.php">Logout</a></nav>
-</header>
+<?php include '../includes/header.php'; ?>
+
 <div class="container">
-    <h2>Your Reserved Passenger Rides</h2>
+    <a href="../dashboard/dashboard.php" class="btn-back">← Back to Dashboard</a>
+    <h2 class="page-heading">🎫 My Bookings</h2>
+    <p class="page-subtext">Rides you've requested to join.</p>
+
+    <?php if (isset($_GET['msg']) && $_GET['msg'] == 'requested'): ?>
+    <div class="alert-success">✅ Request sent! Waiting for driver approval.</div>
+    <?php endif; ?>
+    <?php if (isset($_GET['msg']) && $_GET['msg'] == 'already_requested'): ?>
+    <div class="alert-info">ℹ️ You've already requested this ride.</div>
+    <?php endif; ?>
+
     <div class="trip-grid">
-        <?php
-        $res = $conn->query("SELECT b.id as booking_id, t.*, u.name as driver_name FROM bookings b JOIN trips t ON b.trip_id=t.id JOIN users u ON t.driver_id=u.id WHERE b.passenger_id='$user_id' AND b.status='Confirmed' ORDER BY b.id DESC");
-        
-        if ($res && $res->num_rows == 0) {
-            echo "<p>No active ride pooling bookings found.</p>";
-        } else {
-            while($row = $res->fetch_assoc()) {
-                $booking_id = $row['booking_id'];
-                $pickup = htmlspecialchars($row['pickup']);
-                $dropoff = htmlspecialchars($row['dropoff']);
-                $driver_name = htmlspecialchars($row['driver_name']);
-                $trip_date = htmlspecialchars($row['trip_date']);
-                $trip_time = htmlspecialchars($row['trip_time']);
-                $cost = htmlspecialchars($row['cost_share']);
-                
-                echo "<div class='trip-card'>";
-                echo "<div class='trip-info-block'>";
-                echo "<div class='trip-locations'>$pickup to $dropoff</div>";
-                echo "<p>Driver: $driver_name</p>";
-                echo "<div class='trip-meta-row'><span>Date: $trip_date</span><span>Time: $trip_time</span></div>";
-                echo "</div>";
-                echo "<div class='trip-price-section'>";
-                echo "<div class='trip-cost'>RM $cost</div>";
-                echo "<a href='cancel_booking.php?id=$booking_id' class='btn btn-danger'>Cancel</a>";
-                echo "</div>";
-                echo "</div>";
-            }
-        }
-        ?>
+        <?php if ($requests && $requests->num_rows > 0): ?>
+            <?php while ($req = $requests->fetch_assoc()): ?>
+                <div class="trip-card">
+                    <div class="trip-info-block">
+                        <div class="trip-locations">📍 <?php echo htmlspecialchars($req['origin']); ?> → <?php echo htmlspecialchars($req['destination']); ?></div>
+                        <div class="trip-meta-row">
+                            <span>🗓 <?php echo date('D, d M Y  •  h:i A', strtotime($req['departure'])); ?></span>
+                            <span class="badge-driver-name">👤 <?php echo htmlspecialchars($req['driver_name']); ?></span>
+                            <span class="badge-status badge-<?php echo strtolower($req['status']); ?>"><?php echo htmlspecialchars($req['status']); ?></span>
+                        </div>
+                    </div>
+                    <div class="trip-price-section">
+                        <div class="trip-cost">RM <?php echo number_format($req['price'] * $req['seats_requested'], 2); ?></div>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+        <div class="empty-state">
+            <p>No bookings yet.</p>
+            <p class="empty-state-link"><a href="explore_trips.php">Find a ride →</a></p>
+        </div>
+        <?php endif; ?>
     </div>
 </div>
-<footer>
-    <div class="footer-bottom">
-        @2026 GREENRIDE CAMPUS - the OGs
-    </div>
-</footer>
+
+<?php include '../includes/footer.php'; ?>
 </body>
 </html>

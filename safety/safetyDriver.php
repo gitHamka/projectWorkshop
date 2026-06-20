@@ -17,7 +17,7 @@ include '../includes/header.php';
 <div class="container">
     <a href="../index.php" class="btn-back">← BACK</a>
 
-    <!--  driver needs to know -->
+    <!--  driver knows -->
     <h2 class="safety-section-title">What every driver needs to know</h2>
     <div class="safety-card-grid">
         <div class="safety-card">

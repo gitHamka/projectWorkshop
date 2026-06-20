@@ -78,11 +78,15 @@ header nav .btn {
     font-size: 18px;
 }
 
-header nav .btn-outline {
+.btn-outline-white {
     background: transparent;
     color: #fff;
     border: 2px solid #fff;
     box-shadow: none;
+}
+
+.btn-outline-white:hover {
+    background: rgba(255,255,255,0.15);
 }
 
 header nav .btn-outline:hover {
