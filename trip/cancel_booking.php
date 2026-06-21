@@ -1,4 +1,4 @@
-<?php
+ <?php
 require_once '../config/database.php';
 require_once '../config/session_check.php';
 check_login();
