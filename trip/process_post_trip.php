@@ -22,12 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     exit();
 
-    if ($conn->query($sql) === TRUE) {
-        header("Location: ../dashboard/dashboard.php?msg=trip_posted");
-    } else {
-        die("SQL Error: " . $conn->error); // temporary debug line
-        }
-        }
+}
+
 header("Location: post_trip.php");
 exit();
 ?>
