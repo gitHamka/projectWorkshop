@@ -59,7 +59,10 @@
 
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" id="password" placeholder="At least 6 characters" required>
+                    <div class="password-input-wrapper">
+                       <input type="password" name="password" id="password" placeholder="At least 6 characters" required>
+                            <button type="button" class="toggle-password" id="togglePassword">👁️</button>
+                           </div>
                     <div class="password-strength" id="strength-bar"></div>
                     <div class="strength-label" id="strength-label" style="color:#999;"></div>
                     <div class="field-error" id="err-password"></div>
@@ -73,7 +76,7 @@
 
                 <div class="form-checkbox">
                     <input type="checkbox" name="terms" id="terms">
-                    <label for="terms">Remember Me</label>
+                    <label for="terms">Agree terms and conditions</label>
                 </div>
                 <div class="field-error" id="err-terms" style="margin-bottom:10px;"></div>
 

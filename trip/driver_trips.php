@@ -7,7 +7,8 @@ $user_id = $_SESSION['user_id'];
 
 $res = $conn->query("
     SELECT t.*, 
-           (SELECT COUNT(*) FROM triprequest tr WHERE tr.trip_ID = t.trip_ID AND tr.status != 'Cancelled') AS total_requests
+           (SELECT COUNT(*) FROM triprequest tr WHERE tr.trip_ID = t.trip_ID AND tr.status NOT IN ('Cancelled','Rejected')) AS total_requests,
+           (SELECT COUNT(*) FROM triprequest tr WHERE tr.trip_ID = t.trip_ID AND tr.status = 'Cancelled') AS cancelled_count
     FROM trip t
     WHERE t.user_ID = '$user_id'
     ORDER BY t.departure DESC
@@ -45,6 +46,7 @@ $res = $conn->query("
                 $price    = number_format($row['price'], 2);
                 $status   = htmlspecialchars($row['status']);
                 $requests = $row['total_requests'];
+                $cancelled = $row['cancelled_count'];
                 $pref     = htmlspecialchars($row['gender_preference'] ?? 'Mixed');
                 $badge_class = 'badge-mixed';
                 if ($pref === 'Female') $badge_class = 'badge-female';
@@ -63,8 +65,12 @@ $res = $conn->query("
                     <span class="badge-seats">💺 <?php echo $seats; ?> seat<?php echo $seats != 1 ? 's' : ''; ?> left</span>
                     <span class="trip-pref-badge <?php echo $badge_class; ?>"><?php echo $pref; ?></span>
                     <span class="request-count">👥 <?php echo $requests; ?> request<?php echo $requests != 1 ? 's' : ''; ?></span>
+                    <?php if ($cancelled > 0): ?>
+                        <span class="badge-status badge-cancelled">⚠️ <?php echo $cancelled; ?> cancelled</span>
+                        <?php endif; ?>
+                        
                     <span class="status-badge <?php echo $status_class; ?>"><?php echo $status; ?></span>
-                </div>
+</div>
             </div>
             <div class="trip-price-section">
                 <div class="trip-cost">RM <?php echo $price; ?></div>

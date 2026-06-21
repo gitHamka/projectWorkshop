@@ -35,7 +35,7 @@ $trips_result = $conn->query("
     <nav>
         <?php if ($is_logged_in): ?>
             <span style="color:#fff; font-weight:600; margin-right:12px;">Hi, <?php echo htmlspecialchars($user_name); ?>!</span>
-            <a href="dashboard/dashboard.php" class="btn btn-primary">Go to Dashboard</a>
+            <a href="dashboard/dashboard.php" class="btn btn-primary">Explore Rides</a>
             <a href="auth/logout.php" class="btn btn-outline" style="margin-left:8px;">Logout</a>
         <?php else: ?>
             <a href="auth/login.php" class="btn btn-outline">Login</a>

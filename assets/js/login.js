@@ -51,3 +51,12 @@ loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
     }
 });
+
+const togglePassword = document.getElementById('togglePassword');
+const passwordField = document.getElementById('password');
+
+togglePassword.addEventListener('click', function() {
+    const isHidden = passwordField.type === 'password';
+    passwordField.type = isHidden ? 'text' : 'password';
+    this.textContent = isHidden ? '🙈' : '👁️';
+});

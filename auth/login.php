@@ -52,8 +52,11 @@
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" id="password" placeholder="Enter your password" required>
-                    <div class="field-error" id="err-password"> Please enter your password.</div>
+                    <div class="password-input-wrapper">
+                        <input type="password" name="password" id="password" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password" id="togglePassword">👁️</button>
+                    </div>
+                <div class="field-error" id="err-password"> Please enter your password.</div>
                 </div>
                 <button type="submit" class="btn-login">Login</button>
             </form>
