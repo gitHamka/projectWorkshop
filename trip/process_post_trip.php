@@ -8,7 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $vehicle_id     = intval($_POST['vehicle_id']);
     $origin         = $conn->real_escape_string($_POST['origin']);
     $destination    = $conn->real_escape_string($_POST['destination']);
-    $departure = $conn->real_escape_string(str_replace('T', ' ', $_POST['departure']) . ':00');    $seats_available = intval($_POST['seats_available']);
+    $departure      = $conn->real_escape_string(str_replace('T', ' ', $_POST['departure']) . ':00');
+    $seats_available = intval($_POST['seats_available']);
     $gender_preference = $conn->real_escape_string($_POST['gender_preference']);
     $price          = floatval($_POST['price']);
 
@@ -21,13 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: post_trip.php?error=1");
     }
     exit();
+}
 
-    if ($conn->query($sql) === TRUE) {
-        header("Location: ../dashboard/dashboard.php?msg=trip_posted");
-    } else {
-        die("SQL Error: " . $conn->error); // temporary debug line
-        }
-        }
 header("Location: post_trip.php");
 exit();
 ?>
