@@ -18,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    $sql = "INSERT INTO triprequest (trip_ID, user_ID, seats_requested, pickup_point, dropoff_point, status, request_time, passenger_note)
-            VALUES ('$trip_id', '$user_id', '$seats_requested', '$pickup_point', '$dropoff_point', 'Pending', NOW(), '$passenger_note')";
-
+    $sql = "INSERT INTO triprequest (trip_ID, user_ID, seats_requested, pickup_point, dropoff_point, status, request_time, passenger_note, booking_ID)
+        VALUES ('$trip_id', '$user_id', '$seats_requested', '$pickup_point', '$dropoff_point', 'Pending', NOW(), '$passenger_note', NULL)";
+        
     if ($conn->query($sql) === TRUE) {
         header("Location: my_bookings.php?msg=requested");
     } else {
