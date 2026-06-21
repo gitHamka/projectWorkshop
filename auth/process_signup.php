@@ -17,6 +17,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $gender = '';
     $role   = 'Passenger';
 
+    // check duplicate matric num
+    $existing_matric = $conn->query("SELECT user_ID FROM user WHERE matric_number='$matric_number' LIMIT 1")->fetch_assoc();
+    if ($existing_matric) {
+        header("Location: signup.php?error=duplicate_matric");
+        exit();
+    }
+
+    // check duplicate email
+    $existing_email = $conn->query("SELECT user_ID FROM user WHERE email='$email' LIMIT 1")->fetch_assoc();
+    if ($existing_email) {
+        header("Location: signup.php?error=duplicate_email");
+        exit();
+    }
+
     $sql = "INSERT INTO user (name, email, password, phone_number, role, matric_number, gender)
             VALUES ('$name', '$email', '$password', '$phone_number', '$role', '$matric_number', '$gender')";
 
@@ -24,7 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: login.php?msg=signup_success");
         exit();
     } else {
-        echo "Registration error: " . $conn->error;
+        header("Location: signup.php?error=signup_failed");
+        exit();
     }
 }
 ?>

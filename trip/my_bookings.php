@@ -31,12 +31,8 @@ $requests = $conn->query("
     <h2 class="page-heading">🎫 My Bookings</h2>
     <p class="page-subtext">Rides you've requested to join.</p>
 
-    <?php if (isset($_GET['msg']) && $_GET['msg'] == 'requested'): ?>
-    <div class="alert-success">✅ Request sent! Waiting for driver approval.</div>
-    <?php endif; ?>
-    <?php if (isset($_GET['msg']) && $_GET['msg'] == 'already_requested'): ?>
-    <div class="alert-info">ℹ️ You've already requested this ride.</div>
-    <?php endif; ?>
+    <div id="form-alert-success" class="alert-box alert-success" style="display:none;"></div>
+    <div id="form-alert-info" class="alert-box alert-info" style="display:none;"></div>
 
     <div class="trip-grid">
         <?php if ($requests && $requests->num_rows > 0): ?>
@@ -52,6 +48,15 @@ $requests = $conn->query("
                     </div>
                     <div class="trip-price-section">
                         <div class="trip-cost">RM <?php echo number_format($req['price'] * $req['seats_requested'], 2); ?></div>
+                        <?php if ($req['status'] == 'Pending'): ?>
+                            <a href="edit_request.php?id=<?php echo $req['request_ID']; ?>" class="btn btn-secondary btn-sm">Edit</a>
+                            <?php endif; ?>
+                            <?php if (in_array($req['status'], ['Pending', 'Confirmed'])): ?>
+                                <form action="process_cancel_request.php" method="POST" class="inline-form">
+                                    <input type="hidden" name="request_id" value="<?php echo $req['request_ID']; ?>">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Cancel this ride request?');">Cancel</button>
+                                </form>
+                                <?php endif; ?>
                     </div>
                 </div>
             <?php endwhile; ?>
@@ -65,5 +70,7 @@ $requests = $conn->query("
 </div>
 
 <?php include '../includes/footer.php'; ?>
+
+<script src="../assets/js/my_bookings.js"></script>
 </body>
 </html>

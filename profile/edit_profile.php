@@ -22,6 +22,9 @@ $redirect = $_GET['redirect'] ?? 'profile';
 <body>
 <div class="auth-container">
     <h2>Update Profile Info</h2>
+
+    <div id="form-alert" class="alert-box alert-error" style="display:none;"></div>
+
     <form action="update_profile.php" method="POST" id="editProfileForm">
         <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>">
 
@@ -48,8 +51,8 @@ $redirect = $_GET['redirect'] ?? 'profile';
             </select>
         </div>
 
-        <hr style="margin: 20px 0;">
-        <h3 id="vehicleHeading">Vehicle Information <span style="font-weight:400; font-size:12px; color:#999;">(required for Drivers only)</span></h3>
+        <hr class="form-divider">
+        <h3 id="vehicleHeading">Vehicle Information <span class="field-hint">(required for Drivers only)</span></h3>
 
         <div class="form-group">
             <label>Car Model</label>
@@ -63,8 +66,12 @@ $redirect = $_GET['redirect'] ?? 'profile';
             <label>Color</label>
             <input type="text" name="color" id="color" value="<?php echo htmlspecialchars($vehicle['color'] ?? ''); ?>">
         </div>
+        <div class="form-group">
+            <label>Seats Capacity</label>
+            <input type="number" name="capacity" id="capacity" min="1" max="8" value="<?php echo htmlspecialchars($vehicle['capacity'] ?? '4'); ?>">
+        </div>
 
-        <button type="submit" class="btn btn-primary" style="width:100%;">Save Changes</button>
+        <button type="submit" class="btn btn-primary btn-full">Save Changes</button>
     </form>
 </div>
 
