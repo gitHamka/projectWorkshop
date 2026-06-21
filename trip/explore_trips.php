@@ -28,12 +28,12 @@ $res = $conn->query("
 
 <div class="container">
     <a href="../dashboard/dashboard.php" class="btn-back">← Back to Dashboard</a>
-    <h2 style="font-size:22px; font-weight:800; color:var(--dark-green); margin-bottom:6px;">🔍 Explore Available Rides</h2>
-    <p style="color:var(--text-muted); font-size:14px; margin-bottom:24px;">Find a ride that matches your schedule and route.</p>
+    <h2 class="page-heading"> Explore Available Rides</h2>
+    <p class="page-subtext">Find a ride that matches your schedule and route.</p>
 
     <?php if (isset($_GET['error']) && $_GET['error'] == 'no_seats'): ?>
-    <div style="background:#FFEBEE; border:1.5px solid #EF9A9A; border-radius:12px; padding:12px 18px; color:#C62828; font-weight:600; font-size:14px; margin-bottom:20px;">
-         Sorry, that trip no longer has available seats.
+    <div class="alert-box alert-error">
+        Sorry, that trip no longer has available seats.
     </div>
     <?php endif; ?>
 
@@ -70,13 +70,13 @@ $res = $conn->query("
                 <a href="join_trips.php?id=<?php echo $trip_id; ?>" class="btn btn-primary">Join Ride</a>
             </div>
         </div>
-        <?php endwhile; else: ?>
-        <div style="text-align:center; padding:60px 20px; color:var(--text-muted);">
-            <div style="font-size:48px; margin-bottom:12px;">🚗</div>
-            <p style="font-size:16px; font-weight:600;">No active rides available right now.</p>
-            <p style="font-size:13px; margin-top:6px;">Be the first to <a href="post_trip.php" style="color:var(--accent-green); font-weight:700;">post a ride</a>!</p>
-        </div>
-        <?php endif; ?>
+        <?php else: ?>
+            <div class="empty-state">
+                <div class="empty-state-icon">🚗</div>
+                <p>No active rides available right now.</p>
+                <p class="empty-state-link">Check back soon, or ask a friend who drives to post a ride!</p>
+            </div>
+            <?php endif; ?>
     </div>
 </div>
 

@@ -270,3 +270,8 @@
     display: flex;
     gap: 8px;
 }
+
+.empty-state-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}

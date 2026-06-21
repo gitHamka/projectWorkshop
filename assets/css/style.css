@@ -246,3 +246,24 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+.alert-box {
+    border-radius: 10px;
+    padding: 11px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.alert-error   { background: #FFEBEE; border: 1.5px solid #EF9A9A; color: #C62828; }
+.alert-success { background: #E8F5E9; border: 1.5px solid #A5D6A7; color: #1B5E20; }
+.alert-info    { background: #FFF8E1; border: 1.5px solid #FFE082; color: #F57F17; }
+
+.alert-error a, .alert-success a, .alert-info a {
+    text-decoration: underline;
+    font-weight: 700;
+    color: inherit;
+}
