@@ -103,6 +103,14 @@ form.addEventListener('submit', function(e) {
     }
 });
 
+const togglePassword = document.getElementById('togglePassword');
+const passwordField = document.getElementById('password');
+
+togglePassword.addEventListener('click', function() {
+    const isHidden = passwordField.type === 'password';
+    passwordField.type = isHidden ? 'text' : 'password';
+    this.textContent = isHidden ? '🙈' : '👁️';
+});
 const urlParams = new URLSearchParams(window.location.search);
 const error = urlParams.get('error');
 const formAlertEl = document.getElementById('form-alert');
