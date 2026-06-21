@@ -70,7 +70,6 @@ $res = $conn->query("
                 <a href="join_trips.php?id=<?php echo $trip_id; ?>" class="btn btn-primary">Join Ride</a>
             </div>
         </div>
-<<<<<<< HEAD
 <?php endwhile; else: ?>
             <div class="empty-state">
                 <div class="empty-state-icon">🚗</div>
