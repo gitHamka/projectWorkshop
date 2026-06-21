@@ -7,7 +7,7 @@ $user_id = $_SESSION['user_id'];
 
 $res = $conn->query("
     SELECT t.*, 
-           (SELECT COUNT(*) FROM triprequ est tr WHERE tr.trip_ID = t.trip_ID AND tr.status != 'Cancelled') AS total_requests
+           (SELECT COUNT(*) FROM triprequest tr WHERE tr.trip_ID = t.trip_ID AND tr.status != 'Cancelled') AS total_requests
     FROM trip t
     WHERE t.user_ID = '$user_id'
     ORDER BY t.departure DESC
