@@ -52,9 +52,9 @@ $trips_result = $conn->query("
             <span class="hero-green">Save</span><span class="hero-white"> forever</span>
         </h1>
         <?php if ($is_logged_in): ?>
-            <a href="dashboard/dashboard.php" class="btn-hero">GO TO DASHBOARD ➔</a>
+            <a href="dashboard/dashboard.php" class="btn-hero">EXPLORE RIDES ➔</a>
         <?php else: ?>
-            <a href="auth/signup.php" class="btn-hero">GET STARTED ➔</a>
+            <a href="auth/signup.php" class="btn-hero">EXPLORE RIDES ➔</a>
         <?php endif; ?>
     </div>
 </section>
