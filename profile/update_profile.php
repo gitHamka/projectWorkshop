@@ -13,6 +13,7 @@ $gender = $conn->real_escape_string($_POST['gender']);
 $car_model    = $conn->real_escape_string($_POST['car_model']);
 $plate_number = $conn->real_escape_string($_POST['plate_number']);
 $color        = $conn->real_escape_string($_POST['color']);
+$capacity     = intval($_POST['capacity'] ?? 4);
 
 // update user info
 $conn->query("UPDATE user SET name='$name', phone_number='$phone', role='$role', gender='$gender' WHERE user_id='$user_id'");
@@ -21,10 +22,21 @@ $conn->query("UPDATE user SET name='$name', phone_number='$phone', role='$role',
 if (!empty($car_model) && !empty($plate_number) && !empty($color)) {
     $existing = $conn->query("SELECT vehicle_ID FROM vehicle WHERE user_ID='$user_id' LIMIT 1")->fetch_assoc();
 
-    if ($existing) {
-        $conn->query("UPDATE vehicle SET model='$car_model', plate_number='$plate_number', color='$color' WHERE user_ID='$user_id'");
-    } else {
-        $conn->query("INSERT INTO vehicle (user_ID, model, plate_number, color) VALUES ('$user_id', '$car_model', '$plate_number', '$color')");
+    try {
+        if ($existing) {
+            $conn->query("UPDATE vehicle SET model='$car_model', plate_number='$plate_number', color='$color', capacity='$capacity' WHERE user_ID='$user_id'");
+        } else {
+            $conn->query("INSERT INTO vehicle (user_ID, model, plate_number, color, capacity) VALUES ('$user_id', '$car_model', '$plate_number', '$color', '$capacity')");
+        }
+    } catch (mysqli_sql_exception $e) {
+        if (str_contains($e->getMessage(), 'Duplicate entry')) {
+            $redirect = $_POST['redirect'] ?? 'profile';
+            $target = ($redirect == 'post_trip') ? '../trip/post_trip.php' : 'edit_profile.php';
+            header("Location: edit_profile.php?error=duplicate_plate");
+            exit();
+        } else {
+            throw $e;
+        }
     }
 }
 

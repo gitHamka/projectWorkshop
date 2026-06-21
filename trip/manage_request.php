@@ -23,7 +23,9 @@ $requests = $conn->query("
     FROM triprequest tr
     JOIN user u ON tr.user_ID = u.user_ID
     WHERE tr.trip_ID='$trip_id'
-    ORDER BY tr.request_time ASC
+    ORDER BY 
+        CASE WHEN tr.status = 'Cancelled' THEN 0 ELSE 1 END,
+        tr.request_time ASC
 ");
 ?>
 <!DOCTYPE html>
@@ -47,9 +49,13 @@ $requests = $conn->query("
         &nbsp;|&nbsp; 💺 <?php echo $trip['seats_available']; ?> seat<?php echo $trip['seats_available'] != 1 ? 's' : ''; ?> left
     </p>
 
-    <?php if (isset($_GET['msg'])): ?>
-    <div class="alert-success">
-        <?php echo $_GET['msg'] == 'approved' ? '✅ Request approved.' : '❌ Request rejected.'; ?>
+    <?php
+    $cancelled_count = $conn->query("SELECT COUNT(*) AS cnt FROM triprequest WHERE trip_ID='$trip_id' AND status='Cancelled'")->fetch_assoc()['cnt'];
+    ?>
+    <div id="form-alert-success" class="alert-box alert-success" style="display:none;"></div>
+    <?php if ($cancelled_count > 0): ?>
+    <div class="alert-box alert-error">
+        ⚠️ <?php echo $cancelled_count; ?> passenger<?php echo $cancelled_count > 1 ? 's have' : ' has'; ?> cancelled their booking for this ride.
     </div>
     <?php endif; ?>
 
@@ -97,5 +103,7 @@ $requests = $conn->query("
 </div>
 
 <?php include '../includes/footer.php'; ?>
+<script src="../assets/js/manage_request.js"></script>
+
 </body>
 </html>
