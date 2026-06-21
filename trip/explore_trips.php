@@ -74,7 +74,7 @@ $res = $conn->query("
         <div style="text-align:center; padding:60px 20px; color:var(--text-muted);">
             <div style="font-size:48px; margin-bottom:12px;">🚗</div>
             <p style="font-size:16px; font-weight:600;">No active rides available right now.</p>
-            <p style="font-size:13px; margin-top:6px;">Be the first to <a href="post_trip.php" style="color:var(--accent-green); font-weight:700;">post a ride</a>!</p>
+            <p style="font-size:13px; margin-top:6px;">check back soon, or ask a friend who drives to post a ride! <a href="post_trip.php" style="color:var(--accent-green); font-weight:700;">post a ride</a>!</p>
         </div>
         <?php endif; ?>
     </div>
