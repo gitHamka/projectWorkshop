@@ -283,3 +283,25 @@
     .alert-box { border-radius: 10px; padding: 11px 16px; font-size: 13px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
     .alert-error { background: #FFEBEE; border: 1.5px solid #EF9A9A; color: #C62828; }
     .alert-success { background: #E8F5E9; border: 1.5px solid #A5D6A7; color: #1B5E20; }
+
+.password-input-wrapper {
+    position: relative;
+}
+
+.password-input-wrapper input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    line-height: 1;
+}
