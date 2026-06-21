@@ -76,7 +76,7 @@
 
                 <div class="form-checkbox">
                     <input type="checkbox" name="terms" id="terms">
-                    <label for="terms">Remember Me</label>
+                    <label for="terms">Agree terms and conditions</label>
                 </div>
                 <div class="field-error" id="err-terms" style="margin-bottom:10px;"></div>
 

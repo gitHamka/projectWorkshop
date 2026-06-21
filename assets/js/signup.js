@@ -111,3 +111,17 @@ togglePassword.addEventListener('click', function() {
     passwordField.type = isHidden ? 'text' : 'password';
     this.textContent = isHidden ? '🙈' : '👁️';
 });
+const urlParams = new URLSearchParams(window.location.search);
+const error = urlParams.get('error');
+const formAlertEl = document.getElementById('form-alert');
+
+const signupErrorMessages = {
+    duplicate_matric: ' This Matric/Staff ID is already registered. Please log in instead.',
+    duplicate_email: ' This email is already registered. Please log in instead.',
+    signup_failed: ' Something went wrong during signup. Please try again.'
+};
+
+if (error && signupErrorMessages[error]) {
+    formAlertEl.textContent = signupErrorMessages[error];
+    formAlertEl.style.display = 'flex';
+}
