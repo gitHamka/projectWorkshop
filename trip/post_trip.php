@@ -96,17 +96,6 @@ $vehicle = $vehicle_res ? $vehicle_res->fetch_assoc() : null;
 
 <?php include '../includes/footer.php'; ?>
 
-<script>
-function selectSeats(el, val) {
-    document.querySelectorAll('.option-selector-group .selector-item').forEach(i => i.classList.remove('selected'));
-    el.classList.add('selected');
-    document.getElementById('seats_available').value = val;
-}
-function selectGender(el, val) {
-    document.querySelectorAll('.gender-selector-group .selector-item').forEach(i => i.classList.remove('selected'));
-    el.classList.add('selected');
-    document.getElementById('gender_preference').value = val;
-}
-</script>
+<script src="../assets/js/post_trip.js"></script>
 </body>
 </html>
