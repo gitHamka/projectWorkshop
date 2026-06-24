@@ -65,8 +65,8 @@ $view_role = isset($_GET['view']) ? $_GET['view'] : ($_SESSION['user_role'] ?? '
                         echo "<div class='trip-card'>";
                         echo "<div class='trip-info-block'>";
                         echo "<div class='trip-locations'>📍 $origin → $dest</div>";
-                        echo "<div class='trip-meta-row'><span>🗓 $depart</span><span class='badge-seats'>💺 $seats seats left</span><span>$pref</span><span>$status</span></div>";
-                        echo "</div>";
+                        $seats_class = $seats == 0 ? 'badge-seats seats-full' : 'badge-seats';
+                        echo "<div class='trip-meta-row'><span>🗓 $depart</span><span class='$seats_class'>💺 $seats seats left</span><span>$pref</span><span>$status</span></div>";                        echo "</div>";
                         echo "<div class='trip-price-section'>";
                         echo "<a href='../trip/edit_trip.php?id=$id' class='btn btn-primary'>Edit Ride</a>";
                         echo "</div></div>";
