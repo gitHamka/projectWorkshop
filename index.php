@@ -35,7 +35,7 @@ $trips_result = $conn->query("
     <nav>
         <?php if ($is_logged_in): ?>
             <span style="color:#fff; font-weight:600; margin-right:12px;">Hi, <?php echo htmlspecialchars($user_name); ?>!</span>
-            <a href="dashboard/dashboard.php" class="btn btn-primary">Go to Dashboard</a>
+            <a href="dashboard/dashboard.php" class="btn btn-primary">Explore Rides</a>
             <a href="auth/logout.php" class="btn btn-outline" style="margin-left:8px;">Logout</a>
         <?php else: ?>
             <a href="auth/login.php" class="btn btn-outline">Login</a>
@@ -52,9 +52,9 @@ $trips_result = $conn->query("
             <span class="hero-green">Save</span><span class="hero-white"> forever</span>
         </h1>
         <?php if ($is_logged_in): ?>
-            <a href="dashboard/dashboard.php" class="btn-hero">GO TO DASHBOARD ➔</a>
+            <a href="dashboard/dashboard.php" class="btn-hero">EXPLORE RIDES ➔</a>
         <?php else: ?>
-            <a href="auth/signup.php" class="btn-hero">GET STARTED ➔</a>
+            <a href="auth/signup.php" class="btn-hero">EXPLORE RIDES ➔</a>
         <?php endif; ?>
     </div>
 </section>
@@ -288,28 +288,7 @@ $trips_result = $conn->query("
     </div>
 </footer>
 
-<script>
-document.querySelectorAll('.faq-question').forEach(function(question) {
-    question.addEventListener('click', function() {
-        var item   = this.closest('.faq-item');
-        var answer = item.querySelector('.faq-answer');
-        var btn    = item.querySelector('.faq-toggle');
-        var isOpen = item.classList.contains('active');
-
-        // close all
-        document.querySelectorAll('.faq-item').forEach(function(i) {
-            i.classList.remove('active');
-            i.querySelector('.faq-toggle').textContent = '+';
-        });
-
-        // open if semua close
-        if (!isOpen) {
-            item.classList.add('active');
-            btn.textContent = '×';
-        }
-    });
-});
-</script>
+<script src="assets/js/faq.js"></script>
 
 </body>
 </html>

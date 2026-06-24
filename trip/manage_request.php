@@ -53,6 +53,11 @@ $requests = $conn->query("
     $cancelled_count = $conn->query("SELECT COUNT(*) AS cnt FROM triprequest WHERE trip_ID='$trip_id' AND status='Cancelled'")->fetch_assoc()['cnt'];
     ?>
     <div id="form-alert-success" class="alert-box alert-success" style="display:none;"></div>
+    <?php if (isset($_GET['error']) && $_GET['error'] == 'no_seats'): ?>
+    <div class="alert-box alert-error">
+        ⚠️ Not enough seats available to approve this request.
+    </div>
+    <?php endif; ?>
     <?php if ($cancelled_count > 0): ?>
     <div class="alert-box alert-error">
         ⚠️ <?php echo $cancelled_count; ?> passenger<?php echo $cancelled_count > 1 ? 's have' : ' has'; ?> cancelled their booking for this ride.

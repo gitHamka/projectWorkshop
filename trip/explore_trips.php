@@ -4,7 +4,8 @@ require_once '../config/session_check.php';
 check_login();
 $current_user = $_SESSION['user_id'];
 
-// search filters
+check_login();
+$current_user = $_SESSION['user_id'];
 $f_pickup = trim($_GET['pickup'] ?? '');
 $f_dest   = trim($_GET['destination'] ?? '');
 $f_date   = trim($_GET['date'] ?? '');

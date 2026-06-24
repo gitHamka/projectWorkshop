@@ -20,3 +20,10 @@ if (msg && successMessages[msg]) {
     infoEl.textContent = infoMessages[msg];
     infoEl.style.display = 'flex';
 }
+
+function showTab(tab, btn) {
+    document.getElementById('tab-active').style.display = (tab === 'active') ? '' : 'none';
+    document.getElementById('tab-history').style.display = (tab === 'history') ? '' : 'none';
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}

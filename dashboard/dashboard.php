@@ -52,7 +52,7 @@ $view_role = isset($_GET['view']) ? $_GET['view'] : ($_SESSION['user_role'] ?? '
         <div class="trip-grid">
             <?php
             if ($view_role == 'Driver') {
-                $trips = $conn->query("SELECT * FROM trip WHERE user_ID='$user_id' ORDER BY trip_ID DESC");
+                $trips = $conn->query("SELECT * FROM trip WHERE user_ID='$user_id' AND status='Active' ORDER BY trip_ID DESC");
                 if ($trips && $trips->num_rows > 0) {
                     while ($row = $trips->fetch_assoc()) {
                         $id      = $row['trip_ID'];
@@ -72,7 +72,7 @@ $view_role = isset($_GET['view']) ? $_GET['view'] : ($_SESSION['user_role'] ?? '
                         echo "</div></div>";
                     }
                 } else {
-                    echo "<p style='color:var(--text-muted); padding:20px;'>No trips posted yet. <a href='../trip/post_trip.php' style='color:var(--accent-green);'>Post one now →</a></p>";
+                    echo "<p style='color:var(--text-muted); padding:20px;'>No active rides right now. <a href='../trip/post_trip.php' style='color:var(--accent-green);'>Post one now →</a> or check your <a href='../trip/driver_trips.php' style='color:var(--accent-green);'>ride history</a>.</p>";
                 }
             } else {
                 $trips = $conn->query("SELECT t.*, u.name AS driver_name FROM trip t JOIN user u ON t.user_ID = u.user_ID WHERE t.status='Active' AND t.seats_available > 0 AND t.user_ID != '$user_id' ORDER BY t.departure ASC LIMIT 10");

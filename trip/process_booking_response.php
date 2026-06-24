@@ -21,17 +21,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if ($action == 'approve') {
-        if ($req['seats_available'] < $req['seats_requested']) {
-            header("Location: manage_request.php?trip_id=" . $req['trip_ID'] . "&error=no_seats");
+        $seats_requested = (int)$req['seats_requested'];
+        $trip_id = (int)$req['trip_ID'];
+
+        // Atomic guard: only deduct if enough seats remain at the moment of update.
+        // Prevents overbooking if two approvals happen at nearly the same time.
+        $conn->query("UPDATE trip SET seats_available = seats_available - $seats_requested
+                      WHERE trip_ID='$trip_id' AND seats_available >= $seats_requested");
+
+        if ($conn->affected_rows === 0) {
+            header("Location: manage_request.php?trip_id=" . $trip_id . "&error=no_seats");
             exit();
         }
 
         $conn->query("UPDATE triprequest SET status='Confirmed', response_time=NOW() WHERE request_ID='$request_id'");
 
-        $new_seats = $req['seats_available'] - $req['seats_requested'];
-        $conn->query("UPDATE trip SET seats_available='$new_seats' WHERE trip_ID='" . $req['trip_ID'] . "'");
-
-        header("Location: manage_request.php?trip_id=" . $req['trip_ID'] . "&msg=approved");
+        header("Location: manage_request.php?trip_id=" . $trip_id . "&msg=approved");
     } else {
         $conn->query("UPDATE triprequest SET status='Rejected', response_time=NOW() WHERE request_ID='$request_id'");
         header("Location: manage_request.php?trip_id=" . $req['trip_ID'] . "&msg=rejected");
