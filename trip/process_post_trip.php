@@ -5,8 +5,12 @@ check_login();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id  = $_SESSION['user_id'];
     $vehicle_id     = intval($_POST['vehicle_id']);
-    $origin         = $conn->real_escape_string($_POST['origin']);
-    $destination    = $conn->real_escape_string($_POST['destination']);
+    $origin      = $_POST['origin'] === 'Lain-Lain' 
+    ? $conn->real_escape_string(trim($_POST['origin_other'])) 
+    : $conn->real_escape_string($_POST['origin']);
+    $destination = $_POST['destination'] === 'Lain-Lain' 
+    ? $conn->real_escape_string(trim($_POST['destination_other'])) 
+    : $conn->real_escape_string($_POST['destination']);
     $departure      = $conn->real_escape_string(str_replace('T', ' ', $_POST['departure']) . ':00');
     $seats_available = intval($_POST['seats_available']);
     $gender_preference = $conn->real_escape_string($_POST['gender_preference']);
