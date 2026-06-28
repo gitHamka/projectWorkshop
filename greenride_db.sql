@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2026 at 07:00 PM
+-- Generation Time: Jun 28, 2026 at 07:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -78,6 +78,7 @@ CREATE TABLE `trip` (
   `trip_ID` int(5) NOT NULL,
   `origin` varchar(100) NOT NULL,
   `destination` varchar(100) NOT NULL,
+  `distance_km` decimal(6,2) NOT NULL,
   `departure` datetime NOT NULL,
   `seats_available` int(2) NOT NULL,
   `price` decimal(10,2) NOT NULL,
@@ -91,11 +92,12 @@ CREATE TABLE `trip` (
 -- Dumping data for table `trip`
 --
 
-INSERT INTO `trip` (`trip_ID`, `origin`, `destination`, `departure`, `seats_available`, `price`, `status`, `gender_preference`, `vehicle_ID`, `user_ID`) VALUES
-(6, 'FTMK', 'Kolej AJ', '2026-06-22 08:50:00', 0, 1.50, 'Completed', 'Female', 8, 17),
-(7, 'FTMK', 'Mydin', '2026-06-22 10:53:00', 4, 1.50, 'Completed', 'Male', 9, 18),
-(8, 'FTMK', 'AJ', '2026-06-21 21:22:00', 1, 1.50, 'Active', 'Mixed', 9, 18),
-(9, 'FTMK', 'AJ', '2026-06-21 23:00:00', 2, 1.50, 'Active', 'Female', 8, 17);
+INSERT INTO `trip` (`trip_ID`, `origin`, `destination`, `distance_km`, `departure`, `seats_available`, `price`, `status`, `gender_preference`, `vehicle_ID`, `user_ID`) VALUES
+(6, 'FTMK', 'Kolej AJ', 0.00, '2026-06-22 08:50:00', 0, 1.50, 'Completed', 'Female', 8, 17),
+(7, 'FTMK', 'Mydin', 0.00, '2026-06-22 10:53:00', 4, 1.50, 'Completed', 'Male', 9, 18),
+(8, 'FTMK', 'AJ', 3.00, '2026-06-21 21:22:00', 1, 1.50, 'Active', 'Mixed', 9, 18),
+(9, 'FTMK', 'AJ', 0.00, '2026-06-21 23:00:00', 2, 1.50, 'Active', 'Female', 8, 17),
+(10, 'FTMK / FAIX', 'Melaka Sentral', 18.00, '2026-06-28 23:57:00', 2, 9.00, 'Active', 'Mixed', 10, 20);
 
 -- --------------------------------------------------------
 
@@ -170,7 +172,9 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_ID`, `name`, `email`, `password`, `phone_number`, `role`, `matric_number`, `gender`) VALUES
 (17, 'NUR HASYA HUMAIRA BT HASSAN', 'd032410250@student.utem.edu.my', '$2y$10$uQGLpid0uRSVAPhvMwL0jeBoQoWlCWaDCVKdUweEZtFxm22dU.NSC', '0169815504', 'Driver', 'D032410250', 'Female'),
 (18, 'MUHAMMAD NAEEM BIN MOHD RAZALI', 'd032410412@student.utem.edu.my', '$2y$10$4m21XraRzWxSqPTl2uZ5veoJxk.CxOV4CaCikp63ljatzOFjmprKy', '0123456789', 'Driver', 'D032410412', 'Male'),
-(19, 'FARAH QISTINA BINTI MOHD HISHAM', 'd032410106@student.utem.edu.my', '$2y$10$BHYUS4W7vYQbbBAjbIBy5.WZz7uM9zR9zVxFgyqmQgoifIiQ5KQYa', '01233333333', 'Passenger', 'D032410106', '');
+(19, 'FARAH QISTINA BINTI MOHD HISHAM', 'd032410106@student.utem.edu.my', '$2y$10$BHYUS4W7vYQbbBAjbIBy5.WZz7uM9zR9zVxFgyqmQgoifIiQ5KQYa', '01233333333', 'Passenger', 'D032410106', ''),
+(20, 'MUHAMMAD NAEEM BIN MOHD RAZALI', 'd032410411@student.utem.edu.my', '$2y$10$ylcHOXq3TbHd2DFv5SmeyuxRwd/eBlkzYaYGijZbwFjC9.1MlVkzK', '012321312', 'Driver', 'D032410411', 'Male'),
+(21, 'MUHAMMAD NAZEEM BIN MOHD RAZALI', 'd032410413@student.utem.edu.my', '$2y$10$BMmqQl9CQ8dOpHXL00Knne5LaBOIv8/VNnrOaYBWodwtdURUdo2.C', '01231234', 'Passenger', 'D032410413', '');
 
 -- --------------------------------------------------------
 
@@ -193,7 +197,8 @@ CREATE TABLE `vehicle` (
 
 INSERT INTO `vehicle` (`vehicle_ID`, `plate_number`, `model`, `color`, `capacity`, `user_ID`) VALUES
 (8, 'MAV9303', 'Kembara', 'RED', 0, 17),
-(9, 'MBT5944', 'Kancil', 'BLUE', 0, 18);
+(9, 'MBT5944', 'Kancil', 'BLUE', 0, 18),
+(10, 'JGB 5391', 'KANCIL', 'RED', 3, 20);
 
 --
 -- Indexes for dumped tables
@@ -285,7 +290,7 @@ ALTER TABLE `sos_requests`
 -- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `trip_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `trip_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `triphistory`
@@ -303,13 +308,13 @@ ALTER TABLE `triprequest`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `user_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `vehicle_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `vehicle_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
