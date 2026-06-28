@@ -62,8 +62,7 @@ $res = $conn->query("
                 <div class="trip-locations">📍 <?php echo $origin; ?> → <?php echo $dest; ?></div>
                 <div class="trip-meta-row">
                     <span>🗓 <?php echo $depart; ?></span>
-                    <span class="badge-seats">💺 <?php echo $seats; ?> seat<?php echo $seats != 1 ? 's' : ''; ?> left</span>
-                    <span class="trip-pref-badge <?php echo $badge_class; ?>"><?php echo $pref; ?></span>
+                    <span class="badge-seats <?php echo $seats == 0 ? 'seats-full' : ''; ?>">💺 <?php echo $seats; ?> seat<?php echo $seats != 1 ? 's' : ''; ?> left</span>                    <span class="trip-pref-badge <?php echo $badge_class; ?>"><?php echo $pref; ?></span>
                     <span class="request-count">👥 <?php echo $requests; ?> request<?php echo $requests != 1 ? 's' : ''; ?></span>
                     <?php if ($cancelled > 0): ?>
                         <span class="badge-status badge-cancelled">⚠️ <?php echo $cancelled; ?> cancelled</span>

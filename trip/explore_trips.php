@@ -4,7 +4,8 @@ require_once '../config/session_check.php';
 check_login();
 $current_user = $_SESSION['user_id'];
 
-// Search filters
+check_login();
+$current_user = $_SESSION['user_id'];
 $f_pickup = trim($_GET['pickup'] ?? '');
 $f_dest   = trim($_GET['destination'] ?? '');
 $f_date   = trim($_GET['date'] ?? '');
@@ -102,8 +103,7 @@ $res = $conn->query($sql);
                 <div class="trip-locations">📍 <?php echo $origin; ?> → <?php echo $dest; ?></div>
                 <div class="trip-meta-row">
                     <span>🗓 <?php echo $departure; ?></span>
-                    <span class="badge-seats">💺 <?php echo $seats; ?> seat<?php echo $seats > 1 ? 's' : ''; ?> left</span>
-                    <span class="badge-driver-name">👤 <?php echo $driver; ?></span>
+                    <span class="badge-seats <?php echo $seats == 0 ? 'seats-full' : ''; ?>">💺 <?php echo $seats; ?> seat<?php echo $seats != 1 ? 's' : ''; ?> left</span>                    <span class="badge-driver-name">👤 <?php echo $driver; ?></span>
                     <span class="trip-pref-badge <?php echo $badge_class; ?>"><?php echo $pref; ?></span>
                 </div>
             </div>

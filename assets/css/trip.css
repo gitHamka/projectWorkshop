@@ -347,3 +347,12 @@
     background: #e3f2e3;
     color: #2e7d32;
 }
+.badge-completed {
+    background: #e3f2e3;
+    color: #2e7d32;
+}
+
+.badge-seats.seats-full {
+    background-color: #FFEBEE;
+    color: #B71C1C;
+}
