@@ -68,6 +68,7 @@ if ($existing) {
             <div class="trip-meta-row" style="margin-top:8px;">
                 <span>🗓 <?php echo date('D, d M Y  •  h:i A', strtotime($trip['departure'])); ?></span>
                 <span class="badge-seats">💺 <?php echo $trip['seats_available']; ?> seat<?php echo $trip['seats_available'] > 1 ? 's' : ''; ?> left</span>
+                <span class="badge-seats">📏 <?php echo number_format($trip['distance_km'], 1); ?> km</span>
                 <span class="badge-driver-name">👤 <?php echo htmlspecialchars($trip['driver_name']); ?></span>
             </div>
             <div class="trip-cost" style="margin-top:10px;">RM <?php echo number_format($trip['price'], 2); ?> per seat</div>
