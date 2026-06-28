@@ -43,7 +43,16 @@ $res = $conn->query("
                 $dest     = htmlspecialchars($row['destination']);
                 $depart   = date('D, d M Y  •  h:i A', strtotime($row['departure']));
                 $seats    = $row['seats_available'];
-                $price    = number_format($row['price'], 2);
+                $on_campus_list = [
+                    'FTMK / FAIX','FTKE','FTKEK','FTKIP','FTKM','PBB','Perpustakaan','Canselori',
+                    'Dewan Canselor','PKU','Pusat Sukan / Stadium','Masjid / Tasik 1 & 2',
+                    'Pusat Persatuan Pelajar','KK Satria','KK Lestari','KK Al-Jazari',
+                    'Cafe 1','Cafe 2','Cafe Satria','Cafe Lestari','FTKMP','FTKIP (Teknologi)','FPTT'
+                ];
+                $origin_on = in_array($row['origin'], $on_campus_list);
+                $dest_on   = in_array($row['destination'], $on_campus_list);
+                $price     = number_format(($origin_on && $dest_on) ? 0.50 : $row['price'], 2);
+                $distance = number_format($row['distance_km'], 1);
                 $status   = htmlspecialchars($row['status']);
                 $requests = $row['total_requests'];
                 $cancelled = $row['cancelled_count'];
@@ -62,7 +71,9 @@ $res = $conn->query("
                 <div class="trip-locations">📍 <?php echo $origin; ?> → <?php echo $dest; ?></div>
                 <div class="trip-meta-row">
                     <span>🗓 <?php echo $depart; ?></span>
-                    <span class="badge-seats <?php echo $seats == 0 ? 'seats-full' : ''; ?>">💺 <?php echo $seats; ?> seat<?php echo $seats != 1 ? 's' : ''; ?> left</span>                    <span class="trip-pref-badge <?php echo $badge_class; ?>"><?php echo $pref; ?></span>
+                    <span class="badge-seats <?php echo $seats == 0 ? 'seats-full' : ''; ?>">💺 <?php echo $seats; ?> seat<?php echo $seats != 1 ? 's' : ''; ?> left</span>
+                    <span class="badge-seats">📏 <?php echo $distance; ?> km</span>
+                    <span class="trip-pref-badge <?php echo $badge_class; ?>"><?php echo $pref; ?></span>
                     <span class="request-count">👥 <?php echo $requests; ?> request<?php echo $requests != 1 ? 's' : ''; ?></span>
                     <?php if ($cancelled > 0): ?>
                         <span class="badge-status badge-cancelled">⚠️ <?php echo $cancelled; ?> cancelled</span>

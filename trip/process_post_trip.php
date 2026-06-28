@@ -14,9 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $departure      = $conn->real_escape_string(str_replace('T', ' ', $_POST['departure']) . ':00');
     $seats_available = intval($_POST['seats_available']);
     $gender_preference = $conn->real_escape_string($_POST['gender_preference']);
-    $price          = floatval($_POST['price']);
-    $sql = "INSERT INTO trip (origin, destination, departure, seats_available, price, status, gender_preference, vehicle_ID, user_ID)
-            VALUES ('$origin', '$destination', '$departure', '$seats_available', '$price', 'Active', '$gender_preference', '$vehicle_id', '$user_id')";
+
+    $rate_per_km = 0.50;
+    $distance_km = floatval($_POST['distance_km']);
+    $price = max(0.50, round($distance_km * $rate_per_km, 2));
+
+    $sql = "INSERT INTO trip (origin, destination, distance_km, departure, seats_available, price, status, gender_preference, vehicle_ID, user_ID)
+            VALUES ('$origin', '$destination', '$distance_km', '$departure', '$seats_available', '$price', 'Active', '$gender_preference', '$vehicle_id', '$user_id')";
     if ($conn->query($sql) === TRUE) {
         header("Location: ../dashboard/dashboard.php?msg=trip_posted");
     } else {

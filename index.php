@@ -104,6 +104,16 @@ $trips_result = $conn->query("
     <?php if ($trips_result && $trips_result->num_rows > 0): ?>
         <?php while ($trip = $trips_result->fetch_assoc()): ?>
             <?php
+                $on_campus_list = [
+                    'FTMK / FAIX','FTKE','FTKEK','FTKIP','FTKM','PBB','Perpustakaan','Canselori',
+                    'Dewan Canselor','PKU','Pusat Sukan / Stadium','Masjid / Tasik 1 & 2',
+                    'Pusat Persatuan Pelajar','KK Satria','KK Lestari','KK Al-Jazari',
+                    'Cafe 1','Cafe 2','Cafe Satria','Cafe Lestari','FTKMP','FTKIP (Teknologi)','FPTT'
+                ];
+                $origin_on     = in_array($trip['origin'], $on_campus_list);
+                $dest_on       = in_array($trip['destination'], $on_campus_list);
+                $display_price = ($origin_on && $dest_on) ? 0.50 : $trip['price'];
+
                 $departure_dt = new DateTime($trip['departure']);
                 $today        = new DateTime('today');
                 $tomorrow     = new DateTime('tomorrow');
@@ -136,7 +146,7 @@ $trips_result = $conn->query("
                         <?php echo $trip['seats_available']; ?> seats left
                     </span>
                     <span class="preview-trip-cost">
-                        RM <?php echo number_format($trip['price'], 2); ?>
+                        RM <?php echo number_format($display_price, 2); ?>
                     </span>
                 </div>
             </div>

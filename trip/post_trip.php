@@ -147,16 +147,22 @@ $vehicle = $vehicle_res ? $vehicle_res->fetch_assoc() : null;
 
             </div>
 
-            <!-- departure + price -->
+            <!-- departure + distance -->
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;">
                 <div class="form-group" style="margin-bottom:0;">
                     <label>Date & Time of Departure</label>
                     <input type="datetime-local" name="departure" id="departure" required>
                 </div>
                 <div class="form-group" style="margin-bottom:0;">
-                    <label>Estimated Cost Share (RM)</label>
-                    <input type="number" name="price" id="price" step="0.10" min="0.50" value="1.50" required>
+                    <label>Distance (km) — auto-filled, edit if needed</label>
+                    <input type="number" name="distance_km" id="distance_km" step="0.1" min="0.1" value="1" required>
                 </div>
+            </div>
+
+            <!-- price preview -->
+            <div class="form-group">
+                <label>Estimated Cost (RM)</label>
+                <input type="text" id="price_preview" readonly value="RM 0.50">
             </div>
 
             <!-- seats -->
@@ -206,6 +212,71 @@ function selectGender(el, val) {
     document.getElementById('gender_preference').value = val;
 }
 
+// On-campus locations -- any pair of these = flat RM0.50
+const onCampusLocations = [
+    "FTMK / FAIX","FTKE","FTKEK","FTKIP","FTKM","PBB","Perpustakaan","Canselori",
+    "Dewan Canselor","PKU","Pusat Sukan / Stadium","Masjid / Tasik 1 & 2",
+    "Pusat Persatuan Pelajar","KK Satria","KK Lestari","KK Al-Jazari","Cafe 1","Cafe 2",
+    "Cafe Satria","Cafe Lestari","FTKMP","FTKIP (Teknologi)","FPTT"
+];
+
+// Off-campus distances FROM FTMK / FAIX (km). Used when one side is on-campus, other is off-campus.
+const offCampusDistanceFromFTMK = {
+    "melaka sentral": 18,
+    "mydin mitc": 8,
+    "aeon ayer keroh": 12,
+    "mitc": 8,
+    "ayer keroh heights": 9,
+    "bukit beruang": 13,
+    "durian tunggal": 9
+};
+
+function isOnCampus(loc) {
+    return onCampusLocations.includes(loc);
+}
+
+function updatePricePreview() {
+    const rate = 0.50; // RM per km
+    const km = parseFloat(document.getElementById('distance_km').value) || 0;
+    const price = (km * rate).toFixed(2);
+    document.getElementById('price_preview').value = "RM " + Math.max(0.50, parseFloat(price)).toFixed(2);
+}
+
+function lookupDistance() {
+    const originVal = document.getElementById('origin').value;
+    const destVal    = document.getElementById('destination').value;
+
+    if (!originVal || !destVal || originVal === 'Lain-Lain' || destVal === 'Lain-Lain') {
+        updatePricePreview();
+        return;
+    }
+
+    const originOnCampus = isOnCampus(originVal);
+    const destOnCampus    = isOnCampus(destVal);
+
+    if (originOnCampus && destOnCampus) {
+        // Both on-campus -> flat RM0.50, distance just set to 1 for display
+        document.getElementById('distance_km').value = 1;
+    } else if (originOnCampus && !destOnCampus) {
+        // dest is off-campus -> use its known distance from FTMK
+        const key = destVal.toLowerCase();
+        if (offCampusDistanceFromFTMK.hasOwnProperty(key)) {
+            document.getElementById('distance_km').value = offCampusDistanceFromFTMK[key];
+        }
+    } else if (!originOnCampus && destOnCampus) {
+        // origin is off-campus -> use its known distance from FTMK
+        const key = originVal.toLowerCase();
+        if (offCampusDistanceFromFTMK.hasOwnProperty(key)) {
+            document.getElementById('distance_km').value = offCampusDistanceFromFTMK[key];
+        }
+    }
+    // else: both off-campus and different -> no known distance, leave distance_km as-is for manual entry
+
+    updatePricePreview();
+}
+
+document.getElementById('distance_km').addEventListener('input', updatePricePreview);
+
 // lainlain toggle origin
 document.getElementById('origin').addEventListener('change', function() {
     const other = document.getElementById('origin_other');
@@ -217,6 +288,7 @@ document.getElementById('origin').addEventListener('change', function() {
         other.required = false;
         other.value = '';
     }
+    lookupDistance();
 });
 
 // lainlain toggle desti
@@ -230,7 +302,10 @@ document.getElementById('destination').addEventListener('change', function() {
         other.required = false;
         other.value = '';
     }
+    lookupDistance();
 });
+
+updatePricePreview();
 </script>
 </body>
 </html>

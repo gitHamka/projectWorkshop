@@ -90,7 +90,16 @@ $res = $conn->query($sql);
                 $driver    = htmlspecialchars($row['driver_name']);
                 $departure = date('D, d M Y  •  h:i A', strtotime($row['departure']));
                 $seats     = $row['seats_available'];
-                $price     = number_format($row['price'], 2);
+                $on_campus_list = [
+                    'FTMK / FAIX','FTKE','FTKEK','FTKIP','FTKM','PBB','Perpustakaan','Canselori',
+                    'Dewan Canselor','PKU','Pusat Sukan / Stadium','Masjid / Tasik 1 & 2',
+                    'Pusat Persatuan Pelajar','KK Satria','KK Lestari','KK Al-Jazari',
+                    'Cafe 1','Cafe 2','Cafe Satria','Cafe Lestari','FTKMP','FTKIP (Teknologi)','FPTT'
+                ];
+                $origin_on = in_array($row['origin'], $on_campus_list);
+                $dest_on   = in_array($row['destination'], $on_campus_list);
+                $price     = number_format(($origin_on && $dest_on) ? 0.50 : $row['price'], 2);
+                $distance  = number_format($row['distance_km'], 1);
                 $pref      = htmlspecialchars($row['gender_preference'] ?? 'Mixed');
                 $badge_class = 'badge-mixed';
                 if ($pref === 'Female') $badge_class = 'badge-female';
@@ -103,7 +112,9 @@ $res = $conn->query($sql);
                 <div class="trip-locations">📍 <?php echo $origin; ?> → <?php echo $dest; ?></div>
                 <div class="trip-meta-row">
                     <span>🗓 <?php echo $departure; ?></span>
-                    <span class="badge-seats <?php echo $seats == 0 ? 'seats-full' : ''; ?>">💺 <?php echo $seats; ?> seat<?php echo $seats != 1 ? 's' : ''; ?> left</span>                    <span class="badge-driver-name">👤 <?php echo $driver; ?></span>
+                    <span class="badge-seats <?php echo $seats == 0 ? 'seats-full' : ''; ?>">💺 <?php echo $seats; ?> seat<?php echo $seats != 1 ? 's' : ''; ?> left</span>
+                    <span class="badge-seats">📏 <?php echo $distance; ?> km</span>
+                    <span class="badge-driver-name">👤 <?php echo $driver; ?></span>
                     <span class="trip-pref-badge <?php echo $badge_class; ?>"><?php echo $pref; ?></span>
                 </div>
             </div>
